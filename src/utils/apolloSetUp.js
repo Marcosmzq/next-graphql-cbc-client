@@ -2,7 +2,7 @@ import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 
 const httpLink = createHttpLink({
-  uri: "http://localhost:5000/",
+  uri: "https://next-graphql-cbc-server.herokuapp.com/",
 });
 
 const authLink = setContext((_, { headers }) => {
