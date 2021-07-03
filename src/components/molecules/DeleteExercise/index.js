@@ -2,11 +2,13 @@ import { IconButton } from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
 import { useMutation } from "@apollo/client";
 import { DELETE_MULTIPLE_CHOICE } from "src/graphql/multipleChoiceMutations";
+import { useRouter } from "next/router";
 
 const DeleteExercise = ({ exerciseId }) => {
-  const [deleteExercise] = useMutation(DELETE_MULTIPLE_CHOICE, {
+  const router = useRouter();
+  const [deleteExercise, { loading }] = useMutation(DELETE_MULTIPLE_CHOICE, {
     update() {
-      console.log("Se ha borrado exitosamente");
+      router.replace("/admin/newExercise");
     },
     onError(err) {
       console.error(err);
@@ -21,6 +23,7 @@ const DeleteExercise = ({ exerciseId }) => {
       colorScheme="red"
       borderRadius="20%"
       icon={<DeleteIcon />}
+      isLoading={loading}
       onClick={() => deleteExercise()}
     />
   );
