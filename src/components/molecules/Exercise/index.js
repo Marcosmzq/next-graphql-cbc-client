@@ -17,12 +17,7 @@ const Exercise = ({ exercise, newEx, data }) => {
   return (
     <Center height="100%">
       <Flex height="100%" justify="center" align="center" p="10px">
-        <Box
-          border="1px"
-          borderColor="gray.200"
-          p="10px"
-          boxSize={["100%", "500px"]}
-        >
+        <Box border="1px" borderColor="gray.200" p="10px">
           <Box>
             <Link href="/" passHref>
               <Button
