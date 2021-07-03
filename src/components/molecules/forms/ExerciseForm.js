@@ -7,7 +7,7 @@ import {
 } from "@chakra-ui/react";
 import { subjectsList } from "src/utils/subjectsList";
 
-const ExerciseForm = ({ type, handleOnChange, handleSubmit }) => {
+const ExerciseForm = ({ type, handleOnChange, handleSubmit, loading }) => {
   return type === "exercise" ? (
     <form onSubmit={handleSubmit}>
       <FormControl id="subject">
@@ -69,6 +69,7 @@ const ExerciseForm = ({ type, handleOnChange, handleSubmit }) => {
         type="submit"
         variant="outline"
         colorScheme="black"
+        isLoading={loading}
       >
         Añadir
       </Button>
