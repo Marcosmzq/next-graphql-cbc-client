@@ -1,21 +1,12 @@
-import {
-  Box,
-  Text,
-  Divider,
-  Heading,
-  Button,
-  Flex,
-  IconButton,
-} from "@chakra-ui/react";
-import { DeleteIcon } from "@chakra-ui/icons";
+import { Box, Text, Divider, Heading, Button, Flex } from "@chakra-ui/react";
 import ExerciseForm from "src/components/molecules/forms/ExerciseForm";
 import { useRouter } from "next/router";
 import { useState, useContext, useEffect } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_CHOICE } from "src/graphql/choicesMutations";
 import { ADD_ANS_JUST } from "src/graphql/ansJustMutations";
-import { DELETE_MULTIPLE_CHOICE } from "src/graphql/multipleChoiceMutations";
 import { AuthContext } from "src/context/userAuth";
+import DeleteExercise from "src/components/molecules/DeleteExercise";
 
 const Exercise = () => {
   const router = useRouter();
@@ -63,18 +54,6 @@ const Exercise = () => {
       ansJusStatus: newAnsJusValues.status == "true" ? true : false,
     },
   });
-  const [deleteExercise] = useMutation(DELETE_MULTIPLE_CHOICE, {
-    update() {
-      console.log("Se ha borrado exitosamente");
-    },
-    onError(err) {
-      console.error(err);
-      console.log("Ha ocurrido un error al intentar borrar este ejercicio");
-    },
-    variables: {
-      exerciseId: id,
-    },
-  });
   const handleNewChoiceOnChange = (e) => {
     setNewChoiceValues({
       ...newChoiceValues,
@@ -106,12 +85,7 @@ const Exercise = () => {
     <Box m="10px" p="10px" border="1px" borderColor="gray.200">
       <Flex justify="space-between" align="center">
         <Text color="primary">ID: {id}</Text>
-        <IconButton
-          colorScheme="red"
-          borderRadius="20%"
-          icon={<DeleteIcon />}
-          onClick={() => deleteExercise()}
-        />
+        <DeleteExercise exerciseId={id} />
       </Flex>
       <Divider orientation="horizontal" my="8px"></Divider>
       <Text fontSize="24px" color="primary">

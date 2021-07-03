@@ -28,13 +28,13 @@ const Answers = ({ options, setActiveAnswers, activeAnswers }) => {
             <Text
               key={option.header}
               cursor="pointer"
+              border="1px"
               borderColor="green.500"
               bg="green.500"
               color="gray.100"
               p="10px"
               fontSize="14px"
               fontWeight="bold"
-              border="1px"
             >
               {option.header}
             </Text>
